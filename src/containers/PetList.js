@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import PetItem from '../components/PetItem'
+import { connect } from 'react-redux'
 
 
-export class PetList extends Component {
+class PetList extends Component {
   render() {
     const pets = this.props.pets.map(( pet, i ) => <PetItem key={i} pet={ pet } />)
     return (
@@ -16,9 +17,12 @@ export class PetList extends Component {
   }
 }
 
-PetList.defaultProps = {
-  pets: []
+const mapStateToProps = state => {
+  return {
+    pets: state.pets
+  }
 }
 
 
-export default PetList
+
+export default connect(mapStateToProps)(PetList)
